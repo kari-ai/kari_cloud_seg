@@ -15,7 +15,7 @@
 
 
 
-![image-20201122152350700](./readme/fig1_dilated_unet.png)
+![image-20201122152350700](./readme/fig1_dilated_unet.png)는 --patch-size와 함께 숫자로 지정하면 되고 (예: --patch-size 800), --patch-stride는 이웃하는 패치간의 간격이다. 
 
 
 
@@ -47,19 +47,7 @@
 
 ## 설치 방법
 
-본 프로젝트는 PyTorch 1.4버전 이상에서 작성하였으며 필요한 패키지 설치 방법은 pip를 쓰는 환경과 아나콘다를 쓰는 환경을 나눠서 설명한다.
-
-### PIP
-
-requirements.txt 파일을 이용해 필요한 패키지를 설치한다. 
-
-```
-pip install -r requirements.txt
-```
-
-### 아나콘다 
-
-cloud_seg.yml 파일을 이용해 필요한 패키지를 설치한다.
+본 프로젝트는 PyTorch 1.4버전 이상에서 작성하였으며 필요한 패키지는 cloud_seg.yml을 참고해 직접 설치하거나 아나콘다 환경에서 아래와 같이 바로 설치한다.
 
 ```
 conda env create -f cloud_seg.yml
@@ -69,7 +57,7 @@ conda activate cloud_seg
 ### 디렉토리 구조
 
 디렉토리의 구조는 다음과 같다.
-다운 받은 kari_cloud 데이터셋은 data 폴더 아래에 놓이도록 한다. 
+다운로드 받은 kari_cloud 데이터셋은 data 폴더 아래에 놓이도록 한다. 
 
 ```bash
 kari_cloud_seg
@@ -91,17 +79,32 @@ kari_cloud_seg
 
 ## 학습 및 추론 
 
-기본 적인 학습 방법(배치 사이즈 16에 200 epoch까지 학습)은 다음과 같다. 
+기본적인 학습 방법(배치 사이즈 16에 200 epoch까지 학습)은 다음과 같다. 
 
 ```
 python train.py --batch-size 16 --epoch 200 --name first_run
 ```
 
-만약 다른 알고리즘은 쓰고자 하면 다음과 같이 옵션을 사용한다.
+기본 모델은 `deeplabv3` 알고리즘이 사용되며, 만약 다른 알고리즘은 쓰고자 하면 `--model`과 함께 `dilated_unet` 또는 `hrnet_w18`, `hrnet_w48` 이라고 지정한다.
+기본 입력 패치의 크기(`patch-size`)는 800에 인접하는 패치간의 간격(`patch-stride` )은 400이다. 
+기본 손실함수는 `dice`이며 다른 손실함수를 쓰려면 `--loss`와 함께 `ce`, `jaccard`로 지정하면 된다.
+
+그 외 사용법은 `--help`를 치면 나온다.
+
+추론 방법은 다음과 같다.
+
+```
+python predict.py -i sample0.tif sample1.tif --weights ./weights/deeplabv3_best.pt
+```
+
+추론할 때 쓰일 weight 값은 `--weights` 옵션과 함께 파일을 지정한다. 입력은 여러 개를 연달아 적을 수 있다.
+
+
 
 ## 참고문헌
 
 [1] O. Ronneberger, P. Fischer, and T. Brox, "U-Net: Convolutional Networks for Biomedical Image Segmentation," MICCAI, 2015.
+
 [2] https://www.kaggle.com/c/carvana-image-masking-challenge/discussion/40199
 
 [3] L.-C. Chen, G. Papandreou, F. Schroff, and H. Adam, “Rethinking Atrous Convolution for Sementatic Image Segmentation,” arXiv: 1706.05587v3, 2017. 

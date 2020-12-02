@@ -136,11 +136,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', '-i', metavar='INPUT', nargs='+',
                         help='filenames of input images', required=True)
-    parser.add_argument('--weights', type=str, default='weights/kari_dilated_conv_unet.pt', help='model.pt path')
+    parser.add_argument('--weights', type=str, default='weights/deeplabv3_best.pt', help='model.pt path')
     parser.add_argument('--cache-dir', type=str, default='data/caches', help='cache path')
     parser.add_argument('--batch-size', type=int, default=8, help='total batch size for all GPUs')
     parser.add_argument('--patch-size', type=int, default=800, help='patch sizes')
-    parser.add_argument('--patch-stride', type=int, default=400, help='patch sizes')
+    parser.add_argument('--patch-stride', type=int, default=200, help='patch sizes')
     parser.add_argument('--val', '-v', type=bool, help="Validate the performance", default=True)
     opt = parser.parse_args()
     print(opt)
