@@ -1,0 +1,5 @@
+# Hyperparameters for KARI Cloud training
+lr0: 0.0003 # initial learning rate (SGD=1E-2, Adam=1E-3)
+lrf: 0.5 # learning rate factor for scheduling (lr0 * lrf)
+momentum: 0.937  # SGD momentum/Adam beta1
+weight_decay: 0.0005  # optimizer weight decay 5e-4

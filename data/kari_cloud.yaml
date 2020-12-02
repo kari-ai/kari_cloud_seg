@@ -1,0 +1,11 @@
+# KARI Cloud Dataset
+
+train: data/train_img_list.txt
+val: data/val_img_list.txt
+test: data/val_img_list.txt
+
+# number of classes
+num_classes: 3
+
+# class names
+class_names: ['thick cloud', 'thin cloud', 'cloud shadow']
