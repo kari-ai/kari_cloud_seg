@@ -108,3 +108,5 @@ python predict.py -i sample0.tif sample1.tif --weights ./weights/deeplabv3_best.
 [2] https://www.kaggle.com/c/carvana-image-masking-challenge/discussion/40199
 
 [3] L.-C. Chen, G. Papandreou, F. Schroff, and H. Adam, “Rethinking Atrous Convolution for Sementatic Image Segmentation,” arXiv: 1706.05587v3, 2017. 
+
+[4] J. Wang at el, “Deep High-Resolution Representation Learning for Visual Recognition,” IEEE Trans. on Pattern Analysis and Machine Intelligence (PAMI), 2020. 
