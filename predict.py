@@ -89,12 +89,12 @@ def predict(opt):
         pos = idx == 3
         pred_img[pos.cpu().numpy()] = [0, 255, 255]
 
-        cv2_imshow(img, pred_img[:h, :w, :], win_name + '_pred', close=False, write_path='./outputs/')
+        cv2_imshow(img, pred_img[:h, :w, :], win_name + '_pred', display=False, write_path='./outputs/')
         if opt.val:
             acc = np.all(pred_img[:h, :w, :] == label_img, axis=2).sum()/(w * h)
             print('accuracy=', acc)
 
-            cv2_imshow(img, label_img, win_name + '_target', write_path='./outputs/')
+            cv2_imshow(img, label_img, win_name + '_gt', display=False, write_path='./outputs/')
 
         # fold
         # patches = patches.unsqueeze(0)              # [B, C, NH, NW, H, W], here B=1

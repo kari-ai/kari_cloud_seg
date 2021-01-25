@@ -79,7 +79,7 @@ def kari_geotiff_read(filename, num_bands=4):
     return img
 
 
-def cv2_imshow(img, label=None, window_name='img', max_window_size=(4096, 2160), close=True, write_path=None):
+def cv2_imshow(img, label=None, window_name='img', max_window_size=(4096, 2160), display=True, write_path=None):
     # img
     if torch.is_tensor(img):
         # tensor in [0,1] to numpy array in [0, 255]
@@ -124,11 +124,11 @@ def cv2_imshow(img, label=None, window_name='img', max_window_size=(4096, 2160),
     max_h, max_w = max_window_size
     h_ratio, w_ratio = h / max_h if h / max_h > 1.0 else 1.0, w / max_w if w / max_w > 1.0 else 1.0
     ratio = max(h_ratio, w_ratio)
-    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
-    cv2.resizeWindow(window_name, int(h * ratio), int(w * ratio))
-    cv2.imshow(window_name, out_img)
-    cv2.waitKey(0)
-    if close:
+    if display:
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+        cv2.resizeWindow(window_name, int(h * ratio), int(w * ratio))
+        cv2.imshow(window_name, out_img)
+        cv2.waitKey(0)
         cv2.destroyAllWindows()
 
     if write_path is not None:
