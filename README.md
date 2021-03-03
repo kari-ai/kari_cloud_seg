@@ -76,7 +76,6 @@ kari_cloud_seg
 ```
 
 
-
 ## 학습 및 추론 
 
 기본적인 학습 방법(배치 사이즈 16에 200 epoch까지 학습)은 다음과 같다. 
@@ -98,6 +97,7 @@ python predict.py -i sample0.tif sample1.tif --weights ./weights/deeplabv3_best.
 ```
 
 추론할 때 쓰일 weight 값은 `--weights` 옵션과 함께 파일을 지정한다. 입력은 여러 개를 연달아 적을 수 있다.
+(기학습된 weights 파일은 [구글 드라이브](https://drive.google.com/file/d/1J90gcP86sYcDlUdcyW9vx4ejmgw3F9YP/view?usp=sharing)에서 다운 받을 수 있다.)
 
 
 
